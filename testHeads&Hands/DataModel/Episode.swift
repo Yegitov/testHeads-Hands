@@ -1,8 +1,12 @@
 //
-//  DataModel.swift
+//  Episode.swift
 //  testHeads&Hands
 //
 //  Created by Yegitov Aleksey on 30.09.2021.
 //
 
-import Foundation
+import UIKit
+
+class Episode: NSObject {
+
+}
