@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Episode: Codable, Identifiable {
+struct Episode: Codable, Identifiable, Comparable {
+    static func < (lhs: Episode, rhs: Episode) -> Bool {
+        return lhs.id < rhs.id
+    }
+
     public let id: Int
     public let name: String
     public let airDate: String

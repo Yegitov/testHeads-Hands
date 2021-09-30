@@ -152,11 +152,11 @@ extension APIManager {
         }
     }
 
-    public func getEpisode(number: String) -> Future <Location, Error> {
+    public func getEpisode(number: Int) -> Future <Episode, Error> {
         return Future() { promise in
             self.callApi(requestType: .episode, parameters: "/?number=\(number)") {                switch $0 {
                 case .success(let data):
-                    if let infoModel: LocationInfo = self.decodeJSONData(data: data) {
+                    if let infoModel: EpisodeInfo = self.decodeJSONData(data: data) {
                         guard let episode = infoModel.results.first else {
                             promise(.failure(NSError(domain: "No episode of that number", code: 0, userInfo: nil)))
                             return
