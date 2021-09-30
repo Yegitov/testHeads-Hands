@@ -14,14 +14,14 @@
 		36E2F1BC2706164000CBA966 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E2F1BB2706164000CBA966 /* Assets.xcassets */; };
 		36E2F1BF2706164000CBA966 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E2F1BD2706164000CBA966 /* LaunchScreen.storyboard */; };
 		36E2F1C8270616B000CBA966 /* EpisodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1C7270616B000CBA966 /* EpisodeController.swift */; };
-		36E2F1CA270616C100CBA966 /* PlanetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1C9270616C100CBA966 /* PlanetController.swift */; };
+		36E2F1CA270616C100CBA966 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1C9270616C100CBA966 /* LocationController.swift */; };
 		36E2F1CC270616FD00CBA966 /* DetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1CB270616FD00CBA966 /* DetailedInfoController.swift */; };
 		36E2F1CE270617CA00CBA966 /* SimpleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1CD270617CA00CBA966 /* SimpleNavigationController.swift */; };
-		36E2F1D02706189F00CBA966 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1CF2706189F00CBA966 /* APIHandler.swift */; };
+		36E2F1D02706189F00CBA966 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1CF2706189F00CBA966 /* APIManager.swift */; };
 		36E2F1D22706198C00CBA966 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1D12706198C00CBA966 /* DataModel.swift */; };
 		36E2F1D527061B5900CBA966 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1D427061B5900CBA966 /* Character.swift */; };
 		36E2F1D727061B7800CBA966 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1D627061B7800CBA966 /* Episode.swift */; };
-		36E2F1D927061B9500CBA966 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1D827061B9500CBA966 /* Planet.swift */; };
+		36E2F1D927061B9500CBA966 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F1D827061B9500CBA966 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,14 +34,14 @@
 		36E2F1BE2706164000CBA966 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36E2F1C02706164000CBA966 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E2F1C7270616B000CBA966 /* EpisodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeController.swift; sourceTree = "<group>"; };
-		36E2F1C9270616C100CBA966 /* PlanetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetController.swift; sourceTree = "<group>"; };
+		36E2F1C9270616C100CBA966 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		36E2F1CB270616FD00CBA966 /* DetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedInfoController.swift; sourceTree = "<group>"; };
 		36E2F1CD270617CA00CBA966 /* SimpleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNavigationController.swift; sourceTree = "<group>"; };
-		36E2F1CF2706189F00CBA966 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		36E2F1CF2706189F00CBA966 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36E2F1D12706198C00CBA966 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		36E2F1D427061B5900CBA966 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		36E2F1D627061B7800CBA966 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		36E2F1D827061B9500CBA966 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		36E2F1D827061B9500CBA966 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			children = (
 				36E2F1B22706163F00CBA966 /* AppDelegate.swift */,
 				36E2F1B42706163F00CBA966 /* SceneDelegate.swift */,
-				36E2F1CF2706189F00CBA966 /* APIHandler.swift */,
+				36E2F1CF2706189F00CBA966 /* APIManager.swift */,
 				36E2F1D327061A2600CBA966 /* DataModel */,
 				36E2F1C62706165B00CBA966 /* Controllers */,
 				36E2F1B82706163F00CBA966 /* Main.storyboard */,
@@ -92,7 +92,7 @@
 			children = (
 				36E2F1B62706163F00CBA966 /* CharacterController.swift */,
 				36E2F1C7270616B000CBA966 /* EpisodeController.swift */,
-				36E2F1C9270616C100CBA966 /* PlanetController.swift */,
+				36E2F1C9270616C100CBA966 /* LocationController.swift */,
 				36E2F1CB270616FD00CBA966 /* DetailedInfoController.swift */,
 				36E2F1CD270617CA00CBA966 /* SimpleNavigationController.swift */,
 			);
@@ -105,7 +105,7 @@
 				36E2F1D12706198C00CBA966 /* DataModel.swift */,
 				36E2F1D427061B5900CBA966 /* Character.swift */,
 				36E2F1D627061B7800CBA966 /* Episode.swift */,
-				36E2F1D827061B9500CBA966 /* Planet.swift */,
+				36E2F1D827061B9500CBA966 /* Location.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -183,14 +183,14 @@
 				36E2F1B72706163F00CBA966 /* CharacterController.swift in Sources */,
 				36E2F1CC270616FD00CBA966 /* DetailedInfoController.swift in Sources */,
 				36E2F1CE270617CA00CBA966 /* SimpleNavigationController.swift in Sources */,
-				36E2F1D927061B9500CBA966 /* Planet.swift in Sources */,
-				36E2F1D02706189F00CBA966 /* APIHandler.swift in Sources */,
+				36E2F1D927061B9500CBA966 /* Location.swift in Sources */,
+				36E2F1D02706189F00CBA966 /* APIManager.swift in Sources */,
 				36E2F1B32706163F00CBA966 /* AppDelegate.swift in Sources */,
 				36E2F1D727061B7800CBA966 /* Episode.swift in Sources */,
 				36E2F1B52706163F00CBA966 /* SceneDelegate.swift in Sources */,
 				36E2F1C8270616B000CBA966 /* EpisodeController.swift in Sources */,
 				36E2F1D527061B5900CBA966 /* Character.swift in Sources */,
-				36E2F1CA270616C100CBA966 /* PlanetController.swift in Sources */,
+				36E2F1CA270616C100CBA966 /* LocationController.swift in Sources */,
 				36E2F1D22706198C00CBA966 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,5 +10,7 @@ import Foundation
 
 class DataModel: ObservableObject {
     @Published private var characters: [Character] = []
+    private var episodes: [Episode] = []
+    private var locations: [Location] = []
 
 }

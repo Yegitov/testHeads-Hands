@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1036" y="-314"/>
         </scene>
-        <!--Planet Controller-->
+        <!--Location Controller-->
         <scene sceneID="nya-5a-gXT">
             <objects>
-                <viewController id="6NW-ON-3FB" customClass="PlanetController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6NW-ON-3FB" customClass="LocationController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Bh-Y1-tdO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

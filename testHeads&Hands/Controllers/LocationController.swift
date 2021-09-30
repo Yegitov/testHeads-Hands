@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlanetController: UIViewController {
+class LocationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
