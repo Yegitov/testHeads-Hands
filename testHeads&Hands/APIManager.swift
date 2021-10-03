@@ -20,6 +20,7 @@ enum APIManagerError: Error {
     case invalidResponse(error: ErrorMessage)
     case apiError
     case decodingError
+    case noInternet
 }
 
 enum RequestType: String {
@@ -51,6 +52,9 @@ class APIManager: NSObject {
     private var baseURL: String = "https://rickandmortyapi.com/api/"
 
     private func callApi(requestType: RequestType, parameters: String = "", completion: @escaping (Result<Data, APIManagerError>) -> Void) {
+        guard checkInternet() else {
+            return completion(.failure(.noInternet))
+        }
         var urlString = baseURL+requestType.rawValue
         if parameters != "" {
             urlString = urlString+parameters
@@ -94,6 +98,10 @@ class APIManager: NSObject {
             print(error)
             return nil
         }
+    }
+
+    private func checkInternet() -> Bool {
+        return true
     }
 }
 

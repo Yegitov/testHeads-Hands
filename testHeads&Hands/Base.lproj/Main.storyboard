@@ -29,7 +29,7 @@
         <!--Character Controller-->
         <scene sceneID="IwR-uF-aiC">
             <objects>
-                <viewController id="AOt-PH-oYG" customClass="CharacterController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterController" id="AOt-PH-oYG" customClass="CharacterController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J1j-Zl-q3Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Detailed Info Controller-->
         <scene sceneID="Hy3-OL-vd3">
             <objects>
-                <viewController id="IWK-4b-tNT" customClass="DetailedInfoController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailedInfoController" id="IWK-4b-tNT" customClass="DetailedInfoController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jgm-vA-76I">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
         <!--Location Controller-->
         <scene sceneID="nya-5a-gXT">
             <objects>
-                <viewController id="6NW-ON-3FB" customClass="LocationController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationController" id="6NW-ON-3FB" customClass="LocationController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Bh-Y1-tdO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
         <!--Episode Controller-->
         <scene sceneID="muI-DZ-c4F">
             <objects>
-                <viewController id="BFC-ms-8P7" customClass="EpisodeController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EpisodeController" id="BFC-ms-8P7" customClass="EpisodeController" customModule="testHeads_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VdS-kA-iyK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

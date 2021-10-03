@@ -8,10 +8,15 @@
 import Combine
 import Foundation
 
+protocol DataModelUIDelegate: NSObjectProtocol {
+    func show(error: Error)
+}
+
 class DataModel: ObservableObject {
     private let apiManager = APIManager()
+    weak var delegate: DataModelUIDelegate?
 
-    @Published private var characters: [Character] = []
+    @Published private(set) var characters: [Character] = []
     private var episodes: [Episode] = [] {
         didSet {
             episodes.sort()
@@ -23,9 +28,9 @@ class DataModel: ObservableObject {
         }
     }
 
-    @Published private var selectedCharacter: Character? = nil
-    @Published private var selectedEpisode: Episode? = nil
-    @Published private var selectedLocation: Location? = nil
+    @Published private(set) var selectedCharacter: Character!
+    @Published private(set) var selectedEpisode: Episode!
+    @Published private(set) var selectedLocation: Location!
 
     private var cancellable: AnyCancellable?
 
