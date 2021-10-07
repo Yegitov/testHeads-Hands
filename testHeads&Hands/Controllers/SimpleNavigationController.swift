@@ -14,21 +14,29 @@ enum ContentType {
     case episode
 }
 
+protocol NavigationDelegate: NSObjectProtocol {
+    func selectedCharacter(_ id: Int)
+    func selectedEpisode(_ number: Int)
+    func selectedLocation(_ name: String)
+}
+
 class SimpleNavigationController: UINavigationController {
 
     private let model = DataModel()
     private var subscribers: [AnyCancellable] = []
 
-    @IBOutlet private weak var collection: UICollectionView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        model.delegate = self
+        model.getAllCharacters()
 
         subscribers.append(model.$characters
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                self.updateCollection()
+                if let charContr = self.viewControllers.first as? CharacterController {
+                    charContr.updateCollection()
+                }
             })
 
         subscribers.append(model.$selectedEpisode
@@ -49,20 +57,22 @@ class SimpleNavigationController: UINavigationController {
                 self.show(type: .character)
             })
     }
-    
-    private func updateCollection() {
-        
-    }
 
     private func show(type: ContentType) {
         var controller: UIViewController!
         switch type {
         case .character:
-            controller = DetailedInfoController(character: model.selectedCharacter)
+            let temp = DetailedInfoController(character: model.selectedCharacter)
+            temp.delegate = self
+            controller = temp
         case .location:
-            controller = LocationController(location: model.selectedLocation)
+            let temp = LocationController(location: model.selectedLocation)
+            temp.delegate = self
+            controller = temp
         case .episode:
-            controller = EpisodeController(episode: model.selectedEpisode)
+            let temp = EpisodeController(episode: model.selectedEpisode)
+            temp.delegate = self
+            controller = temp
         }
         pushViewController(controller, animated: true)
     }
@@ -74,22 +84,34 @@ extension SimpleNavigationController: DataModelUIDelegate {
         let alertController = UIAlertController(title: "Error",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
-        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+
+    func startLoader() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+    }
+
+    func stopLoader() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
 }
 
-extension SimpleNavigationController: UICollectionViewDelegate {
-
-}
-
-extension SimpleNavigationController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.characters.count
+extension SimpleNavigationController: NavigationDelegate {
+    func selectedCharacter(_ id: Int) {
+        model.selectCharacter(id: id)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+    func selectedEpisode(_ number: Int) {
+        model.selectEpisode(number: number)
     }
 
-
+    func selectedLocation(_ name: String) {
+        model.selectLocation(name: name)
+    }
 }

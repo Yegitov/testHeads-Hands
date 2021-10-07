@@ -10,6 +10,7 @@ import UIKit
 class LocationController: UIViewController {
 
     private var location: Location!
+    weak var delegate: NavigationDelegate?
 
     init(location: Location) {
         self.location = location

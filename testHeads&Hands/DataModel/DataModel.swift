@@ -10,6 +10,8 @@ import Foundation
 
 protocol DataModelUIDelegate: NSObjectProtocol {
     func show(error: Error)
+    func startLoader()
+    func stopLoader()
 }
 
 class DataModel: ObservableObject {
@@ -34,6 +36,22 @@ class DataModel: ObservableObject {
 
     private var cancellable: AnyCancellable?
 
+    func getAllCharacters() {
+        delegate?.startLoader()
+        cancellable = apiManager.getAllCharacters()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.delegate?.show(error: error)
+                case .finished:
+                    print("Finished loading characters info")
+                }
+            }, receiveValue: { characters in
+                self.characters = characters
+                self.delegate?.stopLoader()
+        })
+    }
+
     func selectCharacter(id: Int) {
         selectedCharacter = characters[id - 1]
     }
@@ -45,9 +63,19 @@ class DataModel: ObservableObject {
         if !numberedEpisode.isEmpty {
             selectedEpisode = numberedEpisode.first
         } else {
-            cancellable = apiManager.getEpisode(number: number).sink(receiveCompletion: { _ in }, receiveValue: { episode in
-                self.selectedEpisode = episode
-                self.episodes.append(episode)
+            delegate?.startLoader()
+            cancellable = apiManager.getEpisode(number: number)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.delegate?.show(error: error)
+                    case .finished:
+                        print("Finished loading episode info")
+                    }
+                }, receiveValue: { episode in
+                    self.selectedEpisode = episode
+                    self.episodes.append(episode)
+                    self.delegate?.stopLoader()
             })
         }
     }
@@ -59,9 +87,19 @@ class DataModel: ObservableObject {
         if !namedLocation.isEmpty {
             selectedLocation = namedLocation.first
         } else {
-            cancellable = apiManager.getLocation(name: name).sink(receiveCompletion: { _ in }, receiveValue: { location in
-                self.selectedLocation = location
-                self.locations.append(location)
+            delegate?.startLoader()
+            cancellable = apiManager.getLocation(name: name)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.delegate?.show(error: error)
+                    case .finished:
+                        print("Finished loading location info")
+                    }
+                }, receiveValue: { location in
+                    self.selectedLocation = location
+                    self.locations.append(location)
+                    self.delegate?.stopLoader()
             })
         }
     }

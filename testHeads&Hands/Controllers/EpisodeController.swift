@@ -10,6 +10,7 @@ import UIKit
 class EpisodeController: UIViewController {
 
     private var episode: Episode!
+    weak var delegate: NavigationDelegate?
 
     init(episode: Episode) {
         self.episode = episode

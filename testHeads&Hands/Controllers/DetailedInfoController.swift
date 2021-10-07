@@ -10,6 +10,7 @@ import UIKit
 class DetailedInfoController: UIViewController {
 
     private var character: Character!
+    weak var delegate: NavigationDelegate?
 
     init(character: Character) {
         self.character = character

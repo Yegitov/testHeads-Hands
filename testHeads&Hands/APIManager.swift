@@ -19,7 +19,6 @@ enum APIManagerError: Error {
     case invalidURL
     case invalidResponse(error: ErrorMessage)
     case apiError
-    case decodingError
     case noInternet
 }
 
@@ -106,7 +105,7 @@ class APIManager: NSObject {
 }
 
 extension APIManager {
-    public func getAllCharacters() -> Future <[Character], Error> {
+    public func getAllCharacters() -> Future <[Character], APIManagerError> {
         return Future() { promise in
             var allCharacters = [Character]()
             self.callApi(requestType: .character) {
@@ -142,13 +141,13 @@ extension APIManager {
         }
     }
 
-    public func getLocation(name: String) -> Future <Location, Error> {
+    public func getLocation(name: String) -> Future <Location, APIManagerError> {
         return Future() { promise in
             self.callApi(requestType: .location, parameters: "/?name=\(name)") {                switch $0 {
                 case .success(let data):
                     if let infoModel: LocationInfo = self.decodeJSONData(data: data) {
                         guard let location = infoModel.results.first else {
-                            promise(.failure(NSError(domain: "No location of that name", code: 0, userInfo: nil)))
+                            promise(.failure(APIManagerError.invalidResponse(error: ErrorMessage(error: "No location with that name"))))
                             return
                         }
                         promise(.success(location))
@@ -160,13 +159,14 @@ extension APIManager {
         }
     }
 
-    public func getEpisode(number: Int) -> Future <Episode, Error> {
+    public func getEpisode(number: Int) -> Future <Episode, APIManagerError> {
         return Future() { promise in
-            self.callApi(requestType: .episode, parameters: "/?number=\(number)") {                switch $0 {
+            self.callApi(requestType: .episode, parameters: "/" + String(number)) {
+                switch $0 {
                 case .success(let data):
                     if let infoModel: EpisodeInfo = self.decodeJSONData(data: data) {
                         guard let episode = infoModel.results.first else {
-                            promise(.failure(NSError(domain: "No episode of that number", code: 0, userInfo: nil)))
+                            promise(.failure(APIManagerError.invalidResponse(error: ErrorMessage(error: "No episode with that number"))))
                             return
                         }
                         promise(.success(episode))
