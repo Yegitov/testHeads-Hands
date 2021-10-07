@@ -56,15 +56,21 @@ class DataModel: ObservableObject {
         selectedCharacter = characters[id - 1]
     }
 
-    func selectEpisode(number: Int) {
-        let numberedEpisode = episodes.filter { episode in
-            episode.id == number
+    func selectCharacter(name: String) {
+        selectedCharacter = characters.first { character in
+            character.name == name
         }
-        if !numberedEpisode.isEmpty {
-            selectedEpisode = numberedEpisode.first
+    }
+
+    func selectEpisode(url: String) {
+        let urledEpisode = episodes.filter { episode in
+            episode.url == url
+        }
+        if !urledEpisode.isEmpty {
+            selectedEpisode = urledEpisode.first
         } else {
             delegate?.startLoader()
-            cancellable = apiManager.getEpisode(number: number)
+            cancellable = apiManager.getEpisode(url: url)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .failure(let error):

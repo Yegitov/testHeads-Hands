@@ -26,6 +26,7 @@ enum RequestType: String {
     case character = "character"
     case location = "location"
     case episode = "episode"
+    case url = ""
 }
 
 struct ErrorMessage: Codable {
@@ -51,12 +52,15 @@ class APIManager: NSObject {
     private var baseURL: String = "https://rickandmortyapi.com/api/"
 
     private func callApi(requestType: RequestType, parameters: String = "", completion: @escaping (Result<Data, APIManagerError>) -> Void) {
-        guard checkInternet() else {
+        guard Reachability.isConnectedToNetwork() else {
             return completion(.failure(.noInternet))
         }
         var urlString = baseURL+requestType.rawValue
-        if parameters != "" {
-            urlString = urlString+parameters
+        if parameters != "", let temp = parameters.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            urlString = urlString+temp
+        }
+        if requestType == .url {
+            urlString = parameters
         }
         if let url = URL(string: urlString) {
             let urlSession = URLSession.shared
@@ -97,10 +101,6 @@ class APIManager: NSObject {
             print(error)
             return nil
         }
-    }
-
-    private func checkInternet() -> Bool {
-        return true
     }
 }
 
@@ -159,17 +159,15 @@ extension APIManager {
         }
     }
 
-    public func getEpisode(number: Int) -> Future <Episode, APIManagerError> {
+    public func getEpisode(url: String) -> Future <Episode, APIManagerError> {
         return Future() { promise in
-            self.callApi(requestType: .episode, parameters: "/" + String(number)) {
+            self.callApi(requestType: .url, parameters: url) {
                 switch $0 {
                 case .success(let data):
-                    if let infoModel: EpisodeInfo = self.decodeJSONData(data: data) {
-                        guard let episode = infoModel.results.first else {
-                            promise(.failure(APIManagerError.invalidResponse(error: ErrorMessage(error: "No episode with that number"))))
-                            return
-                        }
+                    if let episode: Episode = self.decodeJSONData(data: data) {
                         promise(.success(episode))
+                    } else {
+                        promise(.failure(APIManagerError.invalidResponse(error: ErrorMessage(error: "No episode with that url"))))
                     }
                 case .failure(let error):
                     promise(.failure(error))

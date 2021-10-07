@@ -16,7 +16,8 @@ enum ContentType {
 
 protocol NavigationDelegate: NSObjectProtocol {
     func selectedCharacter(_ id: Int)
-    func selectedEpisode(_ number: Int)
+    func selectedCharacter(_ name: String)
+    func selectedEpisode(_ url: String)
     func selectedLocation(_ name: String)
 }
 
@@ -108,6 +109,9 @@ extension SimpleNavigationController: DataModelUIDelegate {
         let alertController = UIAlertController(title: "Error",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(ok)
+        
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
         }
@@ -131,8 +135,12 @@ extension SimpleNavigationController: NavigationDelegate {
         model.selectCharacter(id: id)
     }
 
-    func selectedEpisode(_ number: Int) {
-        model.selectEpisode(number: number)
+    func selectedCharacter(_ name: String) {
+        model.selectCharacter(name: name)
+    }
+
+    func selectedEpisode(_ url: String) {
+        model.selectEpisode(url: url)
     }
 
     func selectedLocation(_ name: String) {

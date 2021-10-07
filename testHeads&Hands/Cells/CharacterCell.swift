@@ -19,8 +19,7 @@ class CharacterCell: UICollectionViewCell {
         characterName.text = character.name
         characterStatus.text = character.status.rawValue
         characterLocation.text = character.location.name
-        characterEpisode.text = character.episode.last
-
+        characterEpisode.text = character.episode.sorted().last
         characterImage.downloaded(from: character.image)
     }
 }
