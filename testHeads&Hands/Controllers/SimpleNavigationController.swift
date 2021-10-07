@@ -35,6 +35,7 @@ class SimpleNavigationController: UINavigationController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 if let charContr = self.viewControllers.first as? CharacterController {
+                    charContr.characters = self.model.characters
                     charContr.updateCollection()
                 }
             })
@@ -60,17 +61,40 @@ class SimpleNavigationController: UINavigationController {
 
     private func show(type: ContentType) {
         var controller: UIViewController!
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var controllerID: String!
         switch type {
         case .character:
-            let temp = DetailedInfoController(character: model.selectedCharacter)
+            guard let char = model.selectedCharacter else {
+                return
+            }
+            controllerID = "DetailedInfoController"
+            guard let temp = storyboard.instantiateViewController(identifier: controllerID) as? DetailedInfoController else {
+                return
+            }
+            temp.character = char
             temp.delegate = self
             controller = temp
         case .location:
-            let temp = LocationController(location: model.selectedLocation)
+            guard let loc = model.selectedLocation else {
+                return
+            }
+            controllerID = "LocationController"
+            guard let temp = storyboard.instantiateViewController(identifier: controllerID) as? LocationController else {
+                return
+            }
+            temp.location = loc
             temp.delegate = self
             controller = temp
         case .episode:
-            let temp = EpisodeController(episode: model.selectedEpisode)
+            guard let epi = model.selectedEpisode else {
+                return
+            }
+            controllerID = "EpisodeController"
+            guard let temp = storyboard.instantiateViewController(identifier: controllerID) as? EpisodeController else {
+                return
+            }
+            temp.episode = epi
             temp.delegate = self
             controller = temp
         }

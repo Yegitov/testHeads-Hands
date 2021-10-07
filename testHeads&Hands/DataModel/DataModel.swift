@@ -30,9 +30,9 @@ class DataModel: ObservableObject {
         }
     }
 
-    @Published private(set) var selectedCharacter: Character!
-    @Published private(set) var selectedEpisode: Episode!
-    @Published private(set) var selectedLocation: Location!
+    @Published private(set) var selectedCharacter: Character? = nil
+    @Published private(set) var selectedEpisode: Episode? = nil
+    @Published private(set) var selectedLocation: Location? = nil
 
     private var cancellable: AnyCancellable?
 

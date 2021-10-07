@@ -9,19 +9,10 @@ import UIKit
 
 class CharacterController: UIViewController {
 
-    private var characters: [Character]!
+    var characters: [Character]!
     weak var delegate: NavigationDelegate?
 
     @IBOutlet private weak var characterCollection: UICollectionView!
-
-    init(characters: [Character]) {
-        self.characters = characters
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     func updateCollection() {
         characterCollection.reloadData()
@@ -61,7 +52,8 @@ class CharacterController: UIViewController {
 }
 
 extension CharacterController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         delegate?.selectedCharacter(characters[indexPath.row].id)
     }
 }
@@ -69,12 +61,20 @@ extension CharacterController: UICollectionViewDelegate {
 extension CharacterController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return characters.count
+        if let characters = characters {
+            return characters.count
+        } else {
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCell", for: indexPath) as? CharacterCell else {
+            return UICollectionViewCell()
+        }
+        cell.setup(with: characters[indexPath.row])
+        return cell
     }
 
 

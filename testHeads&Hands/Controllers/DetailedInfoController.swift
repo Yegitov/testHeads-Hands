@@ -9,17 +9,8 @@ import UIKit
 
 class DetailedInfoController: UIViewController {
 
-    private var character: Character!
+    var character: Character!
     weak var delegate: NavigationDelegate?
-
-    init(character: Character) {
-        self.character = character
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

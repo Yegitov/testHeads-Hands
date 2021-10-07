@@ -9,17 +9,8 @@ import UIKit
 
 class EpisodeController: UIViewController {
 
-    private var episode: Episode!
+    var episode: Episode!
     weak var delegate: NavigationDelegate?
-
-    init(episode: Episode) {
-        self.episode = episode
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

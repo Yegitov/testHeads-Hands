@@ -63,13 +63,13 @@ class APIManager: NSObject {
             urlSession.dataTask(with: url) {
                 switch $0 {
                 case .success(let (response, data)):
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
-                    completion(.failure(.invalidResponse(error: self.decodeError(data: data) ?? ErrorMessage(error: "invalidResponse"))))
-                    return
-                }
-                completion(.success(data))
+                    guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
+                        completion(.failure(.invalidResponse(error: self.decodeError(data: data) ?? ErrorMessage(error: "invalidResponse"))))
+                        return
+                    }
+                    completion(.success(data))
                 case .failure( _):
-                completion(.failure(.apiError))
+                    completion(.failure(.apiError))
                 }
             }.resume()
         } else {

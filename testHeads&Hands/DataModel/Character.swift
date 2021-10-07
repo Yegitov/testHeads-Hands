@@ -28,16 +28,16 @@ struct Character: Codable, Identifiable {
 }
 
 public enum Status: String, Codable {
-    case alive = "alive"
-    case dead = "dead"
+    case alive = "Alive"
+    case dead = "Dead"
     case unknown = "unknown"
     case none = ""
 }
 
 public enum Gender: String, Codable {
-    case female = "female"
-    case male = "male"
-    case genderless = "genderless"
+    case female = "Female"
+    case male = "Male"
+    case genderless = "Genderless"
     case unknown = "unknown"
     case none = ""
 }

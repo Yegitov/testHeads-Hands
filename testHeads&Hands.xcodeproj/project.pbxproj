@@ -27,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		365FBA94270F23080072A9D5 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		365FBA96270F2FB50072A9D5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36E2F1AF2706163F00CBA966 /* testHeads&Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "testHeads&Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E2F1B22706163F00CBA966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E2F1B42706163F00CBA966 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		36E2F1B12706163F00CBA966 /* testHeads&Hands */ = {
 			isa = PBXGroup;
 			children = (
+				365FBA96270F2FB50072A9D5 /* README.md */,
 				36E2F1B22706163F00CBA966 /* AppDelegate.swift */,
 				36E2F1B42706163F00CBA966 /* SceneDelegate.swift */,
 				36E2F1CF2706189F00CBA966 /* APIManager.swift */,
